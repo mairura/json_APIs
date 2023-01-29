@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+const axios = require("axios");
 
 function App() {
+  const options = {
+    method: "GET",
+    url: "https://travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com/v1/prices/direct/",
+    params: { destination: "LED", origin: "MOW" },
+    headers: {
+      "X-Access-Token": "undefined",
+      "X-RapidAPI-Key": "4c31cf640cmshdfbdc0851576d6bp16ec33jsn6339f47a9bff",
+      "X-RapidAPI-Host":
+        "travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com",
+    },
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={options}>Click Me</button>
     </div>
   );
 }
